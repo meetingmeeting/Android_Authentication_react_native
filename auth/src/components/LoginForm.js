@@ -4,9 +4,10 @@ import firebase from 'firebase';
 import { Button, Card, CardSection, Input, Spinner } from './common';
 
 class LoginForm extends Component {
-    state ={ email: '', password: '', error: '', loading: false};
+    state ={ email: "", password: "", error: "", loading: false};
 
     onButtonPress(){
+        
         const { email, password } = this.state;
 
         this.setState({error: '', loading: true});
@@ -14,7 +15,6 @@ class LoginForm extends Component {
         firebase.auth().signInWithEmailAndPassword(email, password)
             .catch(() => {
                 firebase.auth().createUserWithEmailAndPassword(email, password)
-                console.log('yay')
                 .catch(() => {
                     this.setState({ error: 'Authentication Failed'});
                 });
@@ -22,11 +22,13 @@ class LoginForm extends Component {
     }
 
     renderButton(){
+        //console.log("hi renderButton");
+        
         if(this.state.loading) {
             return <Spinner sizeProps="small" />;
         }
         return(
-            <Button onPress={this.onButtonPress.bind(this)}>
+            <Button makepress={this.onButtonPress.bind(this)}>
                 Log in
             </Button>
         );
@@ -38,7 +40,7 @@ class LoginForm extends Component {
             <Card>
                <CardSection>
                    <Input
-                   placeholder="example@gmail.com"
+                   placeholder="albert@gmail.com"
                    label = "Email"
                    value={this.state.email}
                    onChangeText={ text => this.setState({ email: text })} 
@@ -69,7 +71,7 @@ const styles={
         height:50,
         fontSize: 20,
         alignSelf: 'center',
-        color: 'red'
+        color: '#ff0000'
     }
 };
 

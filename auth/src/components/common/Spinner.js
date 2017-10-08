@@ -12,8 +12,7 @@ const Spinner = ({sizeProps}) => {
 const styles = {
     spinnerStyle: {
         flex: 1,
-        justicyContent: 'center',
-        alignItem: 'center'
+        justifyContent: 'center'
     }
 };
 
